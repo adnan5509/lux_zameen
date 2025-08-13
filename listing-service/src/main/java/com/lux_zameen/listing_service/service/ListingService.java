@@ -19,12 +19,9 @@ public class ListingService {
     }
 
     public ListingResponse createListing(final CreateListingRequest request) {
-
         Listing listing = listingMapper.CreateListingToListing(request);
         Listing savedListing = listingRepository.save(listing);
-        return listingMapper.listingToListingResponse(savedListing);
-
-
+        return listingMapper.ListingToListingResponse(savedListing);
 
     }
 }

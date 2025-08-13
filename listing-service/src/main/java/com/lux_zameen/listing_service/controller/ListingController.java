@@ -3,8 +3,8 @@ package com.lux_zameen.listing_service.controller;
 import com.lux_zameen.listing_service.dto.CreateListingRequest;
 import com.lux_zameen.listing_service.dto.ListingResponse;
 import com.lux_zameen.listing_service.service.ListingService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ public class ListingController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ListingResponse> createListing(@RequestBody @Validated CreateListingRequest request){
+    public ResponseEntity<ListingResponse> createListing(@RequestBody @Valid CreateListingRequest request){
         ListingResponse response = listingService.createListing(request);
         return ResponseEntity.ok(response);
     }

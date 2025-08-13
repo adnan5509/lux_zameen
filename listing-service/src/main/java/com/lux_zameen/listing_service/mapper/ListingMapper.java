@@ -9,7 +9,7 @@ import org.mapstruct.Mapper;
 public interface ListingMapper {
 
     Listing CreateListingToListing(CreateListingRequest createListingRequest);
-    ListingResponse listingToListingResponse(Listing listing);
+    ListingResponse ListingToListingResponse(Listing listing);
 
 
 }
