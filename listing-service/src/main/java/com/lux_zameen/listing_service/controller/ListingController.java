@@ -1,10 +1,16 @@
 package com.lux_zameen.listing_service.controller;
 
 import com.lux_zameen.listing_service.dto.CreateListingRequest;
+import com.lux_zameen.listing_service.dto.ListingFilterDto;
 import com.lux_zameen.listing_service.dto.ListingResponse;
+import com.lux_zameen.listing_service.entity.Listing;
 import com.lux_zameen.listing_service.service.ListingService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +30,13 @@ public class ListingController {
         ListingResponse response = listingService.createListing(request);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<Page<Listing>> searchListings(@ModelAttribute ListingFilterDto filter, Pageable pageable) {
+        Page<Listing> listings = listingService.searchListings(filter, pageable);
+        return ResponseEntity.ok(listings);
+
+    }
+
 
 }
