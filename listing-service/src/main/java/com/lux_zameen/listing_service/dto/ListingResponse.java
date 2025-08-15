@@ -20,6 +20,7 @@ public class ListingResponse {
     private String title;
     private String description;
     private List<String> images; // URLs or base64
+    private String thumbnailUrl; //thumbnail Url
     private String videoUrl; // YouTube link
     private String email;
     private String mobile;

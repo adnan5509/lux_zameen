@@ -57,6 +57,8 @@ public class CreateListingRequest {
 
     private String videoUrl; // YouTube link
 
+    private String thumbnailUrl; // thumbnail link
+
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
     private String email;

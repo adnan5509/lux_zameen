@@ -49,7 +49,7 @@ public class ListingController {
         return ResponseEntity.ok(latestListings);
     }
 
-    @GetMapping("/${id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Listing> getListingById(@PathVariable Long id) {
         Listing listing = listingService.getListingById(id);
         return ResponseEntity.ok(listing);

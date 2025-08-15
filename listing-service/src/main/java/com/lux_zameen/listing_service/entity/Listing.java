@@ -70,6 +70,9 @@ public class Listing {
     @Column(name = "video_url")
     private String videoUrl; // YouTube link
 
+    @Column(name = "thumbnail_url")
+    private String thumbnailUrl; // thumbnail link
+
     @Column(name = "email", nullable = false)
     private String email;
 
