@@ -1,6 +1,7 @@
 package com.lux_zameen.listing_service.service;
 
 import com.lux_zameen.listing_service.dto.CreateListingRequest;
+import com.lux_zameen.listing_service.dto.ListingCard;
 import com.lux_zameen.listing_service.dto.ListingFilterDto;
 import com.lux_zameen.listing_service.dto.ListingResponse;
 import com.lux_zameen.listing_service.entity.Listing;
@@ -30,8 +31,14 @@ public class ListingService {
 
     }
 
-    public Page<Listing> searchListings(final ListingFilterDto filter, final Pageable pageable) {
+    public Page<ListingCard> searchListings(final ListingFilterDto filter, final Pageable pageable) {
         Specification<Listing> listingSpecification = ListingFilterSpecs.filterListingsByCriteria(filter);
-        return listingRepository.findAll(listingSpecification, pageable);
+        Page<Listing> listings =  listingRepository.findAll(listingSpecification, pageable);
+        return listings.map(listingMapper::ListingToListingCard);
+    }
+
+    public Page<ListingCard> getLatestListings(final Pageable pageable) {
+        Page<Listing> latestListings = listingRepository.findAll(pageable);
+        return latestListings.map(listingMapper::ListingToListingCard);
     }
 }
