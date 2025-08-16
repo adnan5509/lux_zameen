@@ -1,1 +1,15 @@
-<p>home works!</p>
+<app-search-property-filter></app-search-property-filter>
+
+<ng-container *ngIf="latestListings$ | async as page; else loading">
+  <div class="grid">
+    <app-listing-card
+      *ngFor="let l of page.content"
+      [listing]="l">
+    </app-listing-card>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+  <div class="loading">Loading latest listings…</div>
+</ng-template>
+

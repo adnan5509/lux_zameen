@@ -1,1 +1,49 @@
-<p>listing-card works!</p>
+<mat-card class="listing-card" appearance="outlined">
+  <!-- Image (fallback if no thumbnailUrl) -->
+  <img
+    mat-card-image
+    [src]="listing.thumbnailUrl"
+    [alt]="listing.title || 'Property photo'"
+  />
+
+  <!-- Title + quick meta -->
+  <mat-card-header>
+    <mat-card-title>{{ listing.title }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ listing.propertyType || '—' }} · {{ listing.purpose || '—' }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <!-- Key details -->
+  <mat-card-content>
+    <div class="row">
+      <mat-icon>place</mat-icon>
+      <span>
+        {{ listing.location ? (listing.location + ', ') : '' }}{{ listing.city }}
+      </span>
+    </div>
+
+    <div class="row" *ngIf="listing.areaSize">
+      <mat-icon>square_foot</mat-icon>
+      <span>{{ listing.areaSize }} m²</span>
+    </div>
+
+    <div class="row price">
+      <mat-icon>euro</mat-icon>
+      <span>{{ listing.price | currency:'EUR':'symbol-narrow' }}</span>
+    </div>
+  </mat-card-content>
+
+  <!-- Actions -->
+  <mat-card-actions align="end">
+    <button mat-button>View</button>
+    <!-- Or, if you have routing:
+    <button mat-button [routerLink]="['/listing', listing.id]">View</button>
+    -->
+  </mat-card-actions>
+
+  <!-- Posted date -->
+  <mat-card-footer *ngIf="listing.createdDate" class="footer">
+    <span>Posted {{ listing.createdDate | date:'mediumDate' }}</span>
+  </mat-card-footer>
+</mat-card>
