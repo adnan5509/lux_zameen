@@ -1,12 +1,15 @@
 <app-search-property-filter></app-search-property-filter>
 
 <ng-container *ngIf="latestListings$ | async as page; else loading">
-  <div class="grid-3">
-    <app-listing-card
-      *ngFor="let l of page.content"
-      [listing]="l">
-    </app-listing-card>
+  <div class="page">
+    <div class="grid-4">
+      <app-listing-card
+        *ngFor="let l of page.content"
+        [listing]="l">
+      </app-listing-card>
+    </div>
   </div>
+
 </ng-container>
 
 <ng-template #loading>

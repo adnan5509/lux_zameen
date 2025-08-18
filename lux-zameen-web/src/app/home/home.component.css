@@ -1,14 +1,12 @@
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)); /* exactly 3 columns */
-  gap: 16px;
-  padding: 16px 0;
+.page {
+  max-width: clamp(1200px, 92vw, 1800px); /* grows up to 1800, ~92% of viewport */
+  margin: 0 auto;
+  padding-inline: clamp(8px, 2vw, 24px);
 }
 
-/* Optional: responsive fallbacks */
-@media (max-width: 1024px) {
-  .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 640px) {
-  .grid-3 { grid-template-columns: 1fr; }
+.grid-4 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  align-items: stretch;
 }

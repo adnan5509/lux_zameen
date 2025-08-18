@@ -44,7 +44,7 @@ public class ListingController {
     }
 
     @GetMapping("/latest")
-    public ResponseEntity<Page<ListingCard>> getLatestListings(@PageableDefault(size = 3, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ResponseEntity<Page<ListingCard>> getLatestListings(@PageableDefault(size = 4, sort = "createdDate", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<ListingCard> latestListings = listingService.getLatestListings(pageable);
         return ResponseEntity.ok(latestListings);
     }
