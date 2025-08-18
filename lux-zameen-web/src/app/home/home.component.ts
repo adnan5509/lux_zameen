@@ -16,6 +16,6 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 export class HomeComponent {
   private listingService = inject(ListingService);
 
-  latestListings$: Observable<Page<ListingCard>> = this.listingService.getLatest(0, 3).pipe(shareReplay(1))
+  latestListings$: Observable<Page<ListingCard>> = this.listingService.getLatest(0, 4).pipe(shareReplay(1));
 
 }

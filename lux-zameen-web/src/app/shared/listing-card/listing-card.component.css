@@ -1,8 +1,2 @@
-.listing-card {
-  max-width: 200px;
-}
-
-.example-header-image {
-  background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
+:host { display: block; }     /* makes <app-listing-card> flow as a block in the grid */
+.listing-card { width: 100%; } /* let the card stretch to fill its grid cell */
