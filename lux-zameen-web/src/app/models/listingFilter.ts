@@ -1,6 +1,6 @@
 export interface ListingFilter {
   purpose?: Purpose | null;
-  q?: string | null;               // region/city/location/free text
+  location?: string | null;               // region/city/location/free text
   propertyType?: string | null;
   minPrice?: number | null;
   maxPrice?: number | null;
@@ -30,4 +30,74 @@ export const PURPOSE_OPTIONS = [
 ];
 
 export type Purpose = 'Sell' | 'Rent' | 'Buy'
+
+export const LUXEMBOURG_COMMUNES = [
+  // — Communes / Cities (30) —
+  'Luxembourg',
+  'Esch-sur-Alzette',
+  'Differdange',
+  'Dudelange',
+  'Bettembourg',
+  'Pétange',
+  'Kayl',
+  'Schifflange',
+  'Rumelange',
+  'Mondercange',
+  'Sanem',
+  'Hesperange',
+  'Strassen',
+  'Bertrange',
+  'Mamer',
+  'Walferdange',
+  'Steinsel',
+  'Contern',
+  'Niederanven',
+  'Schuttrange',
+  'Junglinster',
+  'Kehlen',
+  'Roeser',
+  'Steinfort',
+  'Mersch',
+  'Ettelbruck',
+  'Diekirch',
+  'Grevenmacher',
+  'Remich',
+  'Mondorf-les-Bains',
+
+  // — Luxembourg City quarters (16) —
+  'Kirchberg',
+  'Gasperich',
+  'Gare',
+  'Belair',
+  'Bonnevoie',
+  'Limpertsberg',
+  'Hollerich',
+  'Cents',
+  'Cessange',
+  'Merl',
+  'Beggen',
+  'Dommeldange',
+  'Hamm',
+  'Grund',
+  'Pfaffenthal',
+  'Weimerskirch',
+
+  // — Major localities outside the city (14) —
+  'Belval',        // Esch-sur-Alzette
+  'Oberkorn',      // Differdange
+  'Niederkorn',    // Differdange
+  'Belvaux',       // Sanem
+  'Soleuvre',      // Sanem
+  'Rodange',       // Pétange
+  'Lamadelaine',   // Pétange
+  'Foetz',         // Mondercange
+  'Noertzange',    // Bettembourg
+  'Howald',        // Hesperange
+  'Berchem',       // Roeser
+  'Bascharage',    // Käerjeng
+  'Capellen',      // Mamer
+  'Senningerberg'  // Niederanven
+] as const;
+
+export const COMMUNE_OPTIONS = LUXEMBOURG_COMMUNES.map(c => ({ value: c, label: c }));
 

@@ -15,7 +15,10 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline" class="col grow">
-          <input matInput placeholder="Region, municipality, locality, ref..." formControlName="q">
+          <mat-select formControlName="location" placeholder="Region, municipality, locality">
+            <mat-option *ngFor="let locality of luxembourgLocations "
+              [value]="locality.value">{{locality.label}}</mat-option>
+          </mat-select>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col">

@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
-import { ListingFilter, PROPERTY_TYPE_OPTIONS, PURPOSE_OPTIONS } from '../models/listingFilter';
+import { COMMUNE_OPTIONS, ListingFilter, LUXEMBOURG_COMMUNES, PROPERTY_TYPE_OPTIONS, PURPOSE_OPTIONS } from '../models/listingFilter';
 import { MatIconModule } from "@angular/material/icon";
 
 @Component({
@@ -28,7 +28,7 @@ export class SearchPropertyFilterComponent {
 
 
   propertyTypes = PROPERTY_TYPE_OPTIONS;
-
+  luxembourgLocations = COMMUNE_OPTIONS;
   purposeArray = PURPOSE_OPTIONS;
 
   private fb = inject(FormBuilder);
@@ -37,7 +37,7 @@ export class SearchPropertyFilterComponent {
   // Initialize the form with default values
   form = this.fb.group({
     purpose: 'Rent',
-    q: '',
+    location: '',
     propertyType: null,
     minPrice: null,
     maxPrice: null,

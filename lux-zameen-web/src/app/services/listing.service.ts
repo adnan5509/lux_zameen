@@ -33,7 +33,7 @@ export class ListingService {
 
     // scalars
     if (filter.purpose) params = params.set('purpose', filter.purpose);
-    if (filter.q) params = params.set('q', filter.q);
+    if (filter.location) params = params.set('location', filter.location);
     if (filter.propertyType) params = params.set('propertyType', filter.propertyType);
 
     // ranges
