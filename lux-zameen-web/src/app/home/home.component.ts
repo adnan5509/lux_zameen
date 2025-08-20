@@ -6,16 +6,28 @@ import { ListingCard } from '../models/listingCard';
 import { Page } from '../models/page';
 import { ListingService } from '../services/listing.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
+import { ListingFilter } from '../models/listingFilter';
+import { ListingsDisplayComponent } from '../listings-display/listings-display.component';
 
 @Component({
   selector: 'app-home',
-  imports: [ListingCardComponent, SearchPropertyFilterComponent, AsyncPipe, CommonModule],
+  imports: [SearchPropertyFilterComponent, AsyncPipe, CommonModule, ListingsDisplayComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
   private listingService = inject(ListingService);
 
-  latestListings$: Observable<Page<ListingCard>> = this.listingService.getLatest(0, 4).pipe(shareReplay(1));
+  listingsToDisplay$: Observable<Page<ListingCard>> = this.listingService.getLatest(0, 4).pipe(shareReplay(1));
+  propertiesCount$: Observable<number> = this.listingService.getPropertiesCount().pipe(shareReplay(1));
+  listingSearchResult!: Observable<Page<ListingCard>>;
+
+
+
+  onSearch(listingFilter: ListingFilter) {
+    this.listingSearchResult = this.listingService.searchListings(listingFilter, 0, 8).pipe(shareReplay(1));
+    this.listingsToDisplay$ = this.listingSearchResult;
+  }
 
 }

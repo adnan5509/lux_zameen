@@ -49,9 +49,16 @@ public class ListingController {
         return ResponseEntity.ok(latestListings);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id:\\\\d+}")
     public ResponseEntity<Listing> getListingById(@PathVariable Long id) {
         Listing listing = listingService.getListingById(id);
         return ResponseEntity.ok(listing);
+    }
+
+
+    @GetMapping("/properties-count")
+    public ResponseEntity<Long> getPropertiesCount() {
+        Long count = listingService.getPropertiesCount();
+        return ResponseEntity.ok(count);
     }
 }

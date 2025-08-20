@@ -46,4 +46,8 @@ public class ListingService {
         return listingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Listing not found with id: " + id));
     }
+
+    public Long getPropertiesCount() {
+        return listingRepository.countByStatusIgnoreCase("active");
+    }
 }

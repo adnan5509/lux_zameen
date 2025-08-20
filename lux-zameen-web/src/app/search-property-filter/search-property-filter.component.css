@@ -1,0 +1,158 @@
+/* hero banner */
+.hero {
+  position: relative;
+  height: clamp(280px, 38vw, 420px);
+  border-radius: 18px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  margin: 16px;
+}
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.35)
+  );
+}
+
+/* white panel */
+.panel {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 18px;
+  width: min(1200px, 92vw);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  padding: 18px;
+}
+
+/* top row */
+.panel__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.headline {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #222;
+}
+.count {
+  color: #666;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.col.grow {
+  min-width: 670px;
+}
+
+/* main bar */
+.bar {
+  display: grid;
+  gap: 10px;
+}
+
+/* advanced row */
+.advanced {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  color: #666;
+  justify-content: center;
+
+}
+.pill {
+  min-width: 160px;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+.map-link {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  text-decoration: none;
+  font-weight: 600;
+}
+.map-link mat-icon {
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+/* make the button same height as outline fields and round only the right side */
+.bar .search {
+  height: 56px; /* MDC outlined field height */
+  line-height: 56px; /* centers label if no icon */
+  padding: 0 28px;
+  border-radius: 0 12px 12px 0; /* square left, rounded right */
+  font-weight: 700;
+  text-transform: none; /* keep “Search” case */
+  margin-left: -1px; /* overlap the field border so they look connected */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+.search {
+  width: 50%;
+}
+
+/* brand red (override primary just for this button) */
+.mat-mdc-raised-button.mat-primary.search {
+  background-color: #e30613; /* pick your red */
+  color: #fff;
+}
+.mat-mdc-raised-button.mat-primary.search:hover {
+  filter: brightness(0.95);
+}
+
+/* if you add an icon inside the button */
+.search mat-icon {
+  vertical-align: middle;
+  margin-right: 60px;
+}
+
+/* rounded fields */
+.mat-mdc-form-field {
+  --mdc-outlined-text-field-container-shape: 12px;
+}
+
+/* responsive tweaks */
+@media (max-width: 1024px) {
+  .bar {
+    grid-template-columns: 140px 1fr 180px 160px 120px;
+  }
+  .panel {
+    width: 95vw;
+  }
+}
+@media (max-width: 760px) {
+  .panel__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .bar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .bar .search {
+    grid-column: 1 / -1;
+  }
+  .advanced {
+    flex-wrap: wrap;
+  }
+  .pill {
+    flex: 1 1 160px;
+  }
+}

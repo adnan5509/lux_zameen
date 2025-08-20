@@ -1,0 +1,16 @@
+.page {
+  max-width: clamp(
+    1200px,
+    92vw,
+    1800px
+  ); /* grows up to 1800, ~92% of viewport */
+  margin: 0 auto;
+  padding-inline: clamp(8px, 2vw, 24px);
+}
+
+.grid-4 {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(4, minmax(260px, 1fr));
+  align-items: stretch;
+}

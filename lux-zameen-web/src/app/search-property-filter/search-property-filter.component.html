@@ -1,1 +1,75 @@
-<p>search-property-filter works!</p>
+<section class="hero" [style.backgroundImage]="'url(' + backgroundImageUrl + ')'">
+  <div class="hero__overlay"></div>
+
+  <div class="panel">
+    <div class="panel__top">
+      <h2 class="headline">The no. 1 real estate portal in Luxembourg and Greater Region</h2>
+      <div class="count">{{ propertiesCount | number }} properties</div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="advanced">
+        <mat-form-field appearance="outline" class="col">
+          <mat-select formControlName="purpose">
+            <mat-option *ngFor="let purpose of purposeArray " [value]="purpose.value">{{purpose.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col grow">
+          <input matInput placeholder="Region, municipality, locality, ref..." formControlName="q">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col">
+          <mat-select placeholder="All property Types" formControlName="propertyType">
+            <mat-option value="null">All property Types</mat-option>
+            <mat-option *ngFor="let type of propertyTypes" [value]="type.value">{{type.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="advanced">
+
+        <mat-form-field appearance="outline" class="col">
+          <mat-select formControlName="maxPrice" placeholder="Budget">
+            <mat-option [value]="null">Any</mat-option>
+            <mat-option *ngFor="let b of budgets" [value]="b">{{ b | currency:'EUR':'symbol-narrow' }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="pill">
+          <mat-select formControlName="bedroomsMin" placeholder="Min Bedrooms">
+            <mat-option [value]="null">Any</mat-option>
+            <mat-option *ngFor="let n of [1,2,3,4,5,6]" [value]="n">{{ n }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="pill">
+          <mat-select formControlName="bedroomsMax" placeholder="Max Bedrooms">
+            <mat-option [value]="null">Any</mat-option>
+            <mat-option *ngFor="let n of [1,2,3,4,5,6]" [value]="n">{{ n }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="pill">
+          <input matInput type="number" placeholder="Min Size (m²)" formControlName="minArea">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="pill">
+          <input matInput type="number" placeholder="Max Size (m²)" formControlName="maxArea">
+        </mat-form-field>
+
+        <!-- <a class="map-link" href="#" (click)="$event.preventDefault()">
+          <mat-icon>my_location</mat-icon>
+          Map search
+        </a> -->
+      </div>
+      <div class="button-div">
+        <button mat-raised-button color="primary" class="search" type="submit">
+          Search
+        </button>
+      </div>
+    </form>
+
+
+  </div>
+</section>

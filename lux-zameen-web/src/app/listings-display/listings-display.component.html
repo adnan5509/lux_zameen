@@ -1,0 +1,15 @@
+<ng-container *ngIf="listings; else loading">
+  <div class="page">
+    <div class="grid-4">
+      <app-listing-card
+        *ngFor="let l of listings"
+        [listing]="l">
+      </app-listing-card>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-template #loading>
+  <div class="loading">Loading latest listings…</div>
+</ng-template>
