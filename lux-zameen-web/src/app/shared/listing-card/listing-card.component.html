@@ -1,10 +1,6 @@
 <mat-card class="listing-card" appearance="outlined">
   <!-- Image (fallback if no thumbnailUrl) -->
-  <img
-    mat-card-image
-    [src]="listing.thumbnailUrl"
-    [alt]="listing.title || 'Property photo'"
-  />
+  <img mat-card-image [src]="listing.thumbnailUrl" [alt]="listing.title || 'Property photo'" />
 
   <!-- Title + quick meta -->
   <mat-card-header>
@@ -36,10 +32,7 @@
 
   <!-- Actions -->
   <mat-card-actions align="end">
-    <button mat-button>View</button>
-    <!-- Or, if you have routing:
     <button mat-button [routerLink]="['/listing', listing.id]">View</button>
-    -->
   </mat-card-actions>
 
   <!-- Posted date -->

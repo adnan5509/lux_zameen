@@ -12,6 +12,7 @@ export interface ListingFilter {
 
 
 export const PROPERTY_TYPE_OPTIONS = [
+  { value: 'ROOM', label: 'Room' },
   { value: 'HOUSE', label: 'House' },
   { value: 'APARTMENT', label: 'Apartment' },
   { value: 'NEW_PROPERTY', label: 'New property' },

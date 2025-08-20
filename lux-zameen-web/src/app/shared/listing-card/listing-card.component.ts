@@ -4,15 +4,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { ListingCard } from '../../models/listingCard';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-listing-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, DatePipe, CurrencyPipe, CommonModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, DatePipe, CurrencyPipe, CommonModule, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './listing-card.component.html',
   styleUrl: './listing-card.component.css'
 })
-export class ListingCardComponent implements OnInit{
+export class ListingCardComponent implements OnInit {
 
   @Input({ required: true }) listing!: ListingCard;
 
