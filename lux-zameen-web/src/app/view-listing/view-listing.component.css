@@ -1,0 +1,156 @@
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+.ref {
+  margin-left: auto;
+  color: #777;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 12px;
+  align-items: start;
+}
+.gallery .main img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.thumbs {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.thumb {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  outline: 2px solid transparent;
+}
+.thumb.active {
+  outline-color: #e30613;
+}
+.thumb img {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  display: block;
+}
+
+.heading {
+  display: flex;
+  align-items: start;
+  margin: 16px 0 6px;
+}
+.title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+.actions {
+  margin-left: auto;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.price {
+  text-align: right;
+}
+.amount {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+.per {
+  color: #666;
+  margin-left: 4px;
+}
+
+mat-chip.active {
+  background: #e3f2fd;
+}
+mat-chip.pending {
+  background: #fff8e1;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+}
+.card {
+  border-radius: 12px;
+}
+.desc {
+  margin: 12px 0 8px;
+  white-space: pre-wrap;
+}
+.extra {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #555;
+  margin-top: 6px;
+}
+
+.amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding-top: 10px;
+}
+.amenity {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.contact .contact-body {
+  display: grid;
+  gap: 8px;
+  padding-top: 10px;
+}
+
+@media (max-width: 980px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  .thumbs {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .price {
+    text-align: left;
+  }
+}

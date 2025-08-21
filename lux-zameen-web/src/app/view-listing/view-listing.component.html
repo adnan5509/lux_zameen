@@ -1,1 +1,109 @@
-<p>view-listing works!</p>
+<ng-container *ngIf="listing$ | async as l">
+    <!-- Top nav -->
+    <div class="topbar">
+      <a routerLink="/" class="back"><mat-icon>arrow_back</mat-icon> Back to the list</a>
+      <span class="ref">#{{ l.id }}</span>
+    </div>
+  
+    <!-- Hero / gallery -->
+    <div class="gallery">
+      <div class="main">
+        <img
+          [ngSrc]="(l.images?.length ? l.images[selectedIndex] : l.thumbnailUrl) || '/assets/placeholder.jpg'"
+          height="520" width="820" priority alt="listing image" />
+      </div>
+      <div class="thumbs" *ngIf="l.images?.length">
+        <button
+          *ngFor="let src of l.images; index as i"
+          class="thumb"
+          [class.active]="i === selectedIndex"
+          (click)="setImage(i)"
+          [matTooltip]="'Photo ' + (i+1)">
+          <img [src]="src" alt="thumb {{i+1}}" />
+        </button>
+      </div>
+    </div>
+  
+    <!-- Heading + price row -->
+    <div class="heading">
+      <h1 class="title">
+        {{ l.title || (typeLabel(l) + ' in ' + (l.location || l.city)) }}
+      </h1>
+      <div class="actions">
+        <button mat-icon-button aria-label="Save"><mat-icon>favorite_border</mat-icon></button>
+        <button mat-icon-button aria-label="Share"><mat-icon>share</mat-icon></button>
+      </div>
+    </div>
+  
+    <div class="meta">
+      <div class="left">
+        <mat-chip-set>
+          <mat-chip *ngIf="l.purpose">{{ l.purpose }}</mat-chip>
+          <mat-chip *ngIf="l.propertyType">{{ typeLabel(l) }}</mat-chip>
+          <mat-chip *ngIf="l.city">{{ l.location ? (l.location + ', ') : '' }}{{ l.city }}</mat-chip>
+          <mat-chip *ngIf="l.areaSize"><mat-icon>straighten</mat-icon>{{ l.areaSize }} m²</mat-chip>
+          <mat-chip [ngClass]="l.status?.toLowerCase()" *ngIf="l.status">{{ l.status }}</mat-chip>
+          <mat-chip color="primary" *ngIf="l.readyForPossession">Ready for possession</mat-chip>
+          <mat-chip *ngIf="l.installmentAvailable">Installments available</mat-chip>
+        </mat-chip-set>
+      </div>
+      <div class="price" *ngIf="l.price">
+        <span class="amount">{{ l.price | currency:'EUR':'symbol':'1.0-0' }}</span>
+        <span class="per" *ngIf="l.purpose === 'Rent'">/month</span>
+      </div>
+    </div>
+  
+    <div class="content-grid">
+      <!-- Left column: details -->
+      <div class="col-main">
+        <!-- Amenities -->
+        <mat-card *ngIf="l.amenities?.length" class="card">
+          <mat-card-title>Amenities</mat-card-title>
+          <mat-divider></mat-divider>
+          <div class="amenities">
+            <ng-container *ngFor="let a of l.amenities">
+              <span class="amenity">
+                <mat-icon *ngIf="amenityIcon(a) as icn">{{ icn }}</mat-icon>
+                <span>{{ a }}</span>
+              </span>
+            </ng-container>
+          </div>
+        </mat-card>
+  
+        <!-- Description -->
+        <mat-card class="card">
+          <mat-card-title>Description</mat-card-title>
+          <mat-divider></mat-divider>
+          <p class="desc">{{ l.description }}</p>
+          <div class="extra" *ngIf="l.videoUrl">
+            <a [href]="l.videoUrl" target="_blank" rel="noopener">
+              <mat-icon>ondemand_video</mat-icon> Watch video tour
+            </a>
+          </div>
+          <div class="extra" *ngIf="l.createdDate">
+            <mat-icon>event</mat-icon> Listed on {{ l.createdDate | date:'mediumDate' }}
+          </div>
+        </mat-card>
+      </div>
+  
+      <!-- Right column: contact card -->
+      <div class="col-side">
+        <mat-card class="contact card">
+          <mat-card-title>Contact</mat-card-title>
+          <mat-divider></mat-divider>
+          <div class="contact-body">
+            <a *ngIf="l.mobile" [href]="'tel:' + l.mobile" mat-stroked-button>
+              <mat-icon>call</mat-icon> {{ l.mobile }}
+            </a>
+            <a *ngIf="l.landline" [href]="'tel:' + l.landline" mat-stroked-button>
+              <mat-icon>phone</mat-icon> {{ l.landline }}
+            </a>
+            <a *ngIf="l.email" [href]="'mailto:' + l.email" mat-stroked-button>
+              <mat-icon>mail</mat-icon> {{ l.email }}
+            </a>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </ng-container>
+  
